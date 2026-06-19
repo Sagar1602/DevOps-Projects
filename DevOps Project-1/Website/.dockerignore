@@ -1,0 +1,102 @@
+# Git files and folders
+.git
+.gitignore
+.gitattributes
+
+# GitHub files
+.github
+.gitkeep
+
+# IDE and editor files
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+.env
+.env.local
+.env.*.local
+*.sublime-project
+*.sublime-workspace
+
+# Node/npm files (if using npm)
+node_modules/
+npm-debug.log
+package-lock.json
+yarn.lock
+
+# Python files
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+env/
+venv/
+pip-log.txt
+
+# OS files
+.DS_Store
+Thumbs.db
+*.log
+
+# Docker files (don't copy into image)
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# Build and cache files
+dist/
+build/
+*.cache
+.parcel-cache
+
+# Test files
+test/
+tests/
+*.test.js
+*.spec.js
+coverage/
+.nyc_output/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+
+# Documentation and readme (optional - exclude from container)
+# README.md
+# CHANGELOG.md
+
+# CI/CD files
+.gitlab-ci.yml
+.circleci/
+.travis.yml
+Jenkinsfile
+
+# Package manager files
+package.json
+package-lock.json
+yarn.lock
+.npmrc
+
+# Development files
+.editorconfig
+.prettierrc
+.eslintrc
+.stylelintrc
+
+# Backup files
+*.backup
+*.old
+
+# Maven/Java (if any)
+target/
+pom.xml
+*.jar
+
+# All dot files except .htaccess (if needed)
+.*
+!.htaccess
