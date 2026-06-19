@@ -1,6 +1,5 @@
 name: CICD_Workflow
-on: |
-  push
+on: [push]
 jobs:
   CODE_CHECKOUT:
     runs-on: ubuntu-latest
