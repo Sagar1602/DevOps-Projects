@@ -3,24 +3,30 @@ on: |
   - push
 jobs:
   CODE_CHECKOUT:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Code_Checkout
         uses: actions/checkout@v4
 
   BUILD:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     needs: CODE_CHECKOUT
     steps:
+      - name: Code_Checkout
+        uses: actions/checkout@v4
+
       - name: setup node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20' 
 
       - name: NPM Install 
-        run: npm install   
+        working-directory: Website
+        run: npm install  
+         
 
-      - name: Install HTML-Validate
-        run: npm install --save-dev html-validate
+      - name: HTML-Validator
+        working-directory: Website
+        run: npx html-validate "**/*.html"
 
       - name:    
