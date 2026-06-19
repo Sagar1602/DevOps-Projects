@@ -63,6 +63,10 @@ jobs:
     steps:
       - name: Sonarqube Analysis
         run: |
+          which sonar-scanner
+          sonar-scanner --version
+
+           sonar-scanner \
           -Dsonar.projectKey=static-web-application \
           -Dsonar.projectName=static-web-application \
           -Dsonar.sources=. \
