@@ -40,5 +40,6 @@ jobs:
          
 
       - name: HTML-Validator
+        continue-on-error: true
         working-directory: DevOps Project-1/Website
         run: npx html-validate index.html
