@@ -3,9 +3,12 @@ on: [push]
 jobs:
   CLEAN_WORKSPACE:
     runs-on: self-hosted
-    steps: rm -rf ./* ./.??* || true
+    steps:
+      - name: cleanup workspace 
+        run: |
+          rm -rf ./* ./.??* || true
 
-    
+
   CODE_CHECKOUT:
     needs: CLEAN_WORKSPACE
     runs-on: self-hosted
