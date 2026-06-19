@@ -92,7 +92,7 @@ jobs:
           static-web-app:${{ github.run_number }}
 
       - name: upload artifact
-        run: actions/artifact-upload@v4
+        uses: actions/artifact-upload@v4
         with:
           name: trivy-report
           path: trivy-report.html
