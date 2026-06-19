@@ -33,6 +33,10 @@ jobs:
         run: |
           npm install
           npm list html-validate  
+
+      - name: Check html-validate version
+        working-directory: DevOps Project-1/Website
+        run: npm list html-validate    
          
 
       - name: HTML-Validator
