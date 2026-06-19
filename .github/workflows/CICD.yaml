@@ -63,8 +63,7 @@ jobs:
     steps:
       - name: Sonarqube Analysis
         run: |
-          which sonar-scanner
-          sonar-scanner --version
+          ls -l /opt/sonar-scanner/bin
           /opt/sonar-scanner/bin/sonar-scanner \
           -Dsonar.projectKey=static-web-application \
           -Dsonar.projectName=static-web-application \
