@@ -59,3 +59,7 @@ jobs:
 
       - name: Docker image build
         run: docker build -t static-website-image:latest "DevOps Project-1/Website"
+
+      - name: docker ps 
+        run: docker images 
+
