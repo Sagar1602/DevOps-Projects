@@ -17,7 +17,7 @@ jobs:
       - name: setup node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' 
+          node-version: '22' 
        
       - name: verifying the node version and npm version
         working-directory: DevOps Project-1/Website
