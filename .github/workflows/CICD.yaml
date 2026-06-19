@@ -75,8 +75,27 @@ jobs:
     needs: SONARQUBE_ANALYSIS
     steps: 
       - name: Docker image build
-        run: docker build -t static-website-image:latest "DevOps Project-1/Website"
+        run: docker build -t static-website-image:${{github.run_number}} "DevOps Project-1/Website"
 
       - name: docker ps 
         run: docker images 
+    Trivy_SCAN:
+      runs-on: self-hosted
+      needs: DOCKER_BUILD
+      steps:
+        - name: Trivy Scan
+          run: |
+            trivy image \
+            --format table \
+            --template "@contrib/html.tpl" \
+            -o trivy-report.html \
+            static-web-app:${{ github.run_number }}
+
+        - name: upload artifact
+          run: actions/artifact-upload@v4
+          with:
+            name: trivy-report
+            path: trivy-report.html
+      
+            
 
