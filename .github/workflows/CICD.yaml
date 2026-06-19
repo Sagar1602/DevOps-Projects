@@ -63,8 +63,9 @@ jobs:
     steps:
       - name: Sonarqube Analysis
         run: |
-          ./gradlew sonar \
           -Dsonar.projectKey=static-web-app \
+          -Dsonar.projectName=static-web-app \
+          -Dsonar.sources=. \
           -Dsonar.host.url=${{ secrets.SONARQUBE_URL }} \
           -Dsonar.token=${{ secrets.SONARQUBE_TOKEN }}
   DOCKER_BUILD:
