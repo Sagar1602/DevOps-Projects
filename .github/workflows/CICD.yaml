@@ -20,6 +20,7 @@ jobs:
           node-version: '20' 
        
       - name: verifying the node version and npm version
+        working-directory: DevOps Project-1/Website
         run: |
           pwd
           node --version
