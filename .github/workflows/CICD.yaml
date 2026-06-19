@@ -63,9 +63,6 @@ jobs:
     steps:
       - name: Code_Checkout
         uses: actions/checkout@v4
-      
-      - name: install docker
-        uses: docker/setup-docker-action@v5
 
       - name: Docker image build
         run: docker build -t static-website-image:latest "DevOps Project-1/Website"
