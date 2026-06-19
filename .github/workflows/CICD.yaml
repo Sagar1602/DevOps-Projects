@@ -63,8 +63,8 @@ jobs:
     steps:
       - name: Sonarqube Analysis
         run: |
-          -Dsonar.projectKey=static-web-app \
-          -Dsonar.projectName=static-web-app \
+          -Dsonar.projectKey=static-web-application \
+          -Dsonar.projectName=static-web-application \
           -Dsonar.sources=. \
           -Dsonar.host.url=${{ secrets.SONARQUBE_URL }} \
           -Dsonar.token=${{ secrets.SONARQUBE_TOKEN }}
