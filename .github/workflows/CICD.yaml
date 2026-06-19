@@ -23,6 +23,7 @@ jobs:
         run: |
           node --version
           npm --version
+          npx html-validate --version
 
       - name: NPM Install 
         working-directory: DevOps Project-1/Website
