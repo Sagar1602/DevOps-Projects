@@ -63,7 +63,7 @@ jobs:
     steps:
       - name: Sonarqube Analysis
         run: |
-          ./mvnw sonar:sonar \
+          ./gradlew sonar \
           -Dsonar.projectKey=static-web-app \
           -Dsonar.host.url=${{ secrets.SONARQUBE_URL }} \
           -Dsonar.token=${{ secrets.SONARQUBE_TOKEN }}
