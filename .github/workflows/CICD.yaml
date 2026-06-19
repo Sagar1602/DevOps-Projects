@@ -48,6 +48,10 @@ jobs:
         run: php -l "DevOps Project-1/Website/sendemail.php"  
   
   DOCKER_BUILD:
+    runs-on: ubuntu-latest
     steps:
+      - name: Code_Checkout
+        uses: actions/checkout@v4
+        
       - name: Docker image build
         run: docker build -t static-website-image:latest "DevOps Project-1/Website"
