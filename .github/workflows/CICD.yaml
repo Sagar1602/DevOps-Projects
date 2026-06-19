@@ -69,7 +69,7 @@ jobs:
           -Dsonar.projectName=static-web-application \
           -Dsonar.sources=. \
           -Dsonar.host.url=${{ secrets.SONARQUBE_SERVER }} \
-          -Dsonar.token=${{ secrets.SONARQUBE_TOKEN }}
+          -Dsonar.login=${{ secrets.SONARQUBE_TOKEN }}
   DOCKER_BUILD:
     runs-on: self-hosted
     needs: SONARQUBE_ANALYSIS
