@@ -57,28 +57,20 @@ jobs:
       - name: PHS validator
         run: php -l "DevOps Project-1/Website/sendemail.php"  
   
-
-  DOCKER_BUILD:
+  SONARQUBE_ANALYSIS:
     runs-on: self-hosted
     needs: BUILD
     steps:
-      - name: Debug Docker Access
+      - name: Sonarqube Analysis
         run: |
-          echo "USER: $(whoami)"
-          echo "GROUPS:"
-          groups
-          echo ""
-          echo "ID:"
-          id
-          echo ""
-          echo "DOCKER SOCKET:"
-          ls -l /var/run/docker.sock
-          echo ""
-          echo "DOCKER VERSION:"
-          docker version
-          echo ""
-          echo "DOCKER PS:"
-          docker ps 
+          ./mvnw sonar:sonar \
+          -Dsonar.projectKey=static-web-app \
+          -Dsonar.host.url=${{ secrets.SONARQUBE_URL }} \
+          -Dsonar.token=${{ secrets.SONARQUBE_TOKEN }}
+  DOCKER_BUILD:
+    runs-on: self-hosted
+    needs: SONARQUBE_ANALYSIS
+    steps: 
       - name: Docker image build
         run: docker build -t static-website-image:latest "DevOps Project-1/Website"
 
