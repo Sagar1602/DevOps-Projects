@@ -4,15 +4,18 @@ jobs:
   CLEAN_WORKSPACE:
     runs-on: self-hosted
     steps: rm -rf ./* ./.??* || true
+
+    
   CODE_CHECKOUT:
-    runs-on: ubuntu-latest
+    needs: CLEAN_WORKSPACE
+    runs-on: self-hosted
     steps:
       - name: Code_Checkout
         uses: actions/checkout@v4
 
   BUILD:
-    needs: CLEAN_WORKSPACE
     runs-on: self-hosted
+
     needs: CODE_CHECKOUT
     steps:
       - name: Code_Checkout
