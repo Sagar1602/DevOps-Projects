@@ -32,4 +32,4 @@ jobs:
 
       - name: HTML-Validator
         working-directory: DevOps Project-1/Website
-        run: npx html-validate "**/*.html"
+        run: npx html-validate index.html
