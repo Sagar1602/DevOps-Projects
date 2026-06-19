@@ -65,8 +65,7 @@ jobs:
         run: |
           which sonar-scanner
           sonar-scanner --version
-
-           sonar-scanner \
+          sonar-scanner \
           -Dsonar.projectKey=static-web-application \
           -Dsonar.projectName=static-web-application \
           -Dsonar.sources=. \
