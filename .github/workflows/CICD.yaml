@@ -21,6 +21,7 @@ jobs:
        
       - name: verifying the node version and npm version
         run: |
+          pwd
           node --version
           npm --version
           
