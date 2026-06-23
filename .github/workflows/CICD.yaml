@@ -156,9 +156,10 @@ jobs:
 
       - name: Tae DOCKER IMAGE TO GHCR
         run: |
+          OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
           docker tag \
           ${{secrets.DOCKER_USERNAME}}/static-website-image:${{github.run_number}} \
-          ghcr.io/${{ github.repository_owner }}/static-website-image:${{ github.run_number }}
+          ghcr.io/$OWNER/static-website-image:${{ github.run_number }}
 
       - name: Push Image to GHCR
         run: |
