@@ -143,7 +143,7 @@ jobs:
           docker push \
           ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-2.amazonaws.com/docker-images:${{ github.run_number }}    
   
-  # GHCR_PUSH:
+  # GHCR_PUSH:  
   #   runs-on: self-hosted
   #   needs: ECR_PUSH
   #   steps: 
