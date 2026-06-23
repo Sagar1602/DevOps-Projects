@@ -93,7 +93,7 @@ jobs:
           --format table \
           --template "@contrib/html.tpl" \
           -o trivy-report.html \
-          static-website-image:${{ github.run_number }}
+          ${{secrets.DOCKER_USERNAME}}/static-website-image:${{ github.run_number }}
 
       - name: upload artifact
         uses: actions/upload-artifact@v4
