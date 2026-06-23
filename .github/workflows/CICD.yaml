@@ -142,7 +142,28 @@ jobs:
         run: |
           docker push \
           ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-2.amazonaws.com/docker-images:${{ github.run_number }}    
+  
+  GHCR_PUSH:
+    runs-on: self-hosted
+    needs: ECR_PUSH
+    steps: 
+      - name: login to GHCR
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | \
+          docker login ghcr.io \
+          -u ${{ github.actor }} \
+          --password-stdin
 
+      - name: Tae DOCKER IMAGE TO GHCR
+        run: |
+          docker tag \
+          ${{secrets.DOCKER_USERNAME}}/static-website-image:${{github.run_number}}  
+          ghcr.io/${{ github.repository_owner }}/static-website-image:${{ github.run_number }}
+
+      - name: Push Image to GHCR
+        run: |
+          docker push \
+          ghcr.io/${{ github.repository_owner }}/static-website-image:${{ github.run_number }}    
       
             
 
