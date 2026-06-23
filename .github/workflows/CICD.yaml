@@ -127,7 +127,7 @@ jobs:
           aws-region: ap-south-2
 
       - name: Login TO AWS ECR
-        user: aws-actions/amazon-ecr-login@v2  
+        uses: aws-actions/amazon-ecr-login@v2  
 
       - name: Tag DOCKER Image to ECR 
         run: |
