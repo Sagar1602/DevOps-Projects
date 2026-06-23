@@ -115,6 +115,31 @@ jobs:
         run: |
           docker push ${{secrets.DOCKER_USERNAME}}/static-website-image:${{github.run_number}}
 
+  ECR_PUSH:
+    runs-on: self-hosted
+    needs: DOCKER_IMAGE_PUSH
+    steps:
+      - name: AWS configure
+        uses: aws-actions/configure-aws-credentials@v4 
+        with:
+        aws-access-key-id: ${{secrets.AWS_ACCSS_KEY_ID}}
+        aws-secrets-access-key: ${{secrets.AWS_SECRETS_ACCESS_KEY}}
+        aws-region: ${{AWS_REGION}}
+
+      - name: Login TO AWS ECR
+        user: aws-actions/amazon-ecr-login@v2  
+
+      - name: Tag DOCKER Image to ECR 
+        run: |
+          docker tag \
+          static-website-image:${{ github.run_number }} \
+          893097420093.dkr.ecr.ap-south-2.amazonaws.com/docker-images:${{ github.run_number }}
+
+      - name: Push Docker Image to ECR
+        run: |
+          docker push \
+          ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-2.amazonaws.com/docker-images:${{ github.run_number }}    
+
       
             
 
