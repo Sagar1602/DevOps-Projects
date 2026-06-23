@@ -179,6 +179,12 @@ jobs:
       - name: verifying the artifact 
         run: |
           pwd
-          ls -R downloaded-artifact          
+          ls -R downloaded-artifact    
+
+      - name: Upload Trivy Report to Nexus
+        run: |
+          curl -u "${{ secrets.NEXUS_USERNAME }}:${{ secrets.NEXUS_PASSWORD }}" \
+          --upload-file downloaded-artifact/trivy-report.html \
+          "http://18.61.219.18:8081/repository/security-reports/trivy-report-${{ github.run_number }}.html"          
             
 
