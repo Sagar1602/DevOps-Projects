@@ -128,14 +128,14 @@ jobs:
 
       - name: Login TO AWS ECR
         uses: aws-actions/amazon-ecr-login@v2 
-         
+
       - name: Check Docker Images
         run: docker images
 
       - name: Tag DOCKER Image to ECR 
         run: |
           docker tag \
-          static-website-image:${{ github.run_number }} \
+          ${{secrets.DOCKER_USERNAME}}/static-website-image:${{ github.run_number }} \
           893097420093.dkr.ecr.ap-south-2.amazonaws.com/docker-images:${{ github.run_number }}
 
       - name: Push Docker Image to ECR
