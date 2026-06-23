@@ -63,6 +63,7 @@ jobs:
     steps:
       - name: Sonarqube Analysis
         run: |
+    
           ls -l /opt/sonar-scanner/bin
           /opt/sonar-scanner/bin/sonar-scanner \
           -Dsonar.projectKey=static-web-application \
@@ -112,7 +113,7 @@ jobs:
 
       - name: Docker_Registry_Push
         run: |
-          docker push static-website-image:${{github.run_number}}
+          docker push ${{secrets.DOCKER_USERNAME}}/static-website-image:${{github.run_number}}
 
       
             
