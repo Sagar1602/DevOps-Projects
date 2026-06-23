@@ -166,6 +166,19 @@ jobs:
   #         OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
   #         docker push \
   #         ghcr.io/${OWNER}/static-website-image:${{ github.run_number }}    
-      
+
+  Artifacts_Nexus_Push:
+    runs-on: self-hosted
+    needs: ECR_PUSH
+    steps: 
+      - name: downaloading the artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: trivy-report
+          path: downloaded-artifact
+      - name: verifying the artifact 
+        run: |
+          pwd
+          ls -R downloaded-artifact          
             
 
