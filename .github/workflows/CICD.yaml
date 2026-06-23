@@ -74,8 +74,8 @@ jobs:
     runs-on: self-hosted
     needs: SONARQUBE_ANALYSIS
     steps: 
-      - name: Deleting the pervious  build docker image 
-        run: docker rmi static-website-image:$(( ${{github.run_number}} - 3 ))
+     # - name: Deleting the pervious  build docker image 
+     #   run: docker rmi static-website-image:${{github.run_number}}
 
       - name: Docker image build
         run: docker build -t static-website-image:${{github.run_number}} "DevOps Project-1/Website"
@@ -99,6 +99,21 @@ jobs:
         with:
           name: trivy-report
           path: trivy-report.html
+
+  DOCKER_IMAGE_PUSH:
+    runs-on: self-hosted
+    needs: Trivy_SCAN
+    steps:
+      - name: Docker_Login
+        run: docker/login-action@v4
+        with:
+          username: ${{secrets.DOCKER_USERNAME}} 
+          password: ${{secrets.DOCKER_PASSWORD}}
+
+      - name: Docker_Registry_Push
+        run: |
+          docker push static-website-image:${{github.run_number}}
+
       
             
 
