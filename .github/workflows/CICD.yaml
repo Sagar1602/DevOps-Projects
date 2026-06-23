@@ -163,8 +163,9 @@ jobs:
 
       - name: Push Image to GHCR
         run: |
+          OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
           docker push \
-          ghcr.io/${{ github.repository_owner }}/static-website-image:${{ github.run_number }}    
+          ghcr.io/${OWNER}/static-website-image:${{ github.run_number }}    
       
             
 
