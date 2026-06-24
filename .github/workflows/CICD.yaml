@@ -79,7 +79,7 @@ jobs:
      #   run: docker rmi static-website-image:${{github.run_number}}
 
       - name: Docker image build
-        run: docker build -t ${{secrets.DOCKER_USERNAME}}/static-website-image:latest "DevOps Project-1/Website"
+        run: docker build -t ${{secrets.DOCKER_USERNAME}}/static-website-image:${{ github.run_number }} "DevOps Project-1/Website"
 
       - name: docker ps 
         run: docker images 
@@ -93,7 +93,7 @@ jobs:
           --format table \
           --template "@contrib/html.tpl" \
           -o trivy-report.html \
-          ${{secrets.DOCKER_USERNAME}}/static-website-image:latest
+          ${{secrets.DOCKER_USERNAME}}/static-website-image:${{ github.run_number }}
 
       - name: upload artifact
         uses: actions/upload-artifact@v4
@@ -113,7 +113,7 @@ jobs:
 
       - name: Docker_Registry_Push
         run: |
-          docker push ${{secrets.DOCKER_USERNAME}}/static-website-image:latest
+          docker push ${{secrets.DOCKER_USERNAME}}/static-website-image:${{ github.run_number }}
 
   ECR_PUSH:
     runs-on: self-hosted
@@ -135,13 +135,13 @@ jobs:
       - name: Tag DOCKER Image to ECR 
         run: |
           docker tag \
-          ${{secrets.DOCKER_USERNAME}}/static-website-image:latest \
-          893097420093.dkr.ecr.ap-south-2.amazonaws.com/docker-images:latest
+          ${{secrets.DOCKER_USERNAME}}/static-website-image:${{ github.run_number }} \
+          893097420093.dkr.ecr.ap-south-2.amazonaws.com/docker-images:${{ github.run_number }}
 
       - name: Push Docker Image to ECR
         run: |
           docker push \
-          ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-2.amazonaws.com/docker-images:latest   
+          ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-2.amazonaws.com/docker-images:${{ github.run_number }}   
   
   # GHCR_PUSH:  
   #   runs-on: self-hosted
@@ -185,6 +185,6 @@ jobs:
         run: |
           curl -u "${{ secrets.NEXUS_USERNAME }}:${{ secrets.NEXUS_PASSWORD }}" \
           --upload-file downloaded-artifact/trivy-report.html \
-          "http://18.61.219.18:8081/repository/security-reports/trivy-report-${{ github.run_number }}.html"          
+          "http://18.60.62.103:8081/repository/security-reports/trivy-report-${{ github.run_number }}.html"          
             
 
