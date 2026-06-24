@@ -46,8 +46,8 @@ Dockerfile
 docker-compose.yml
 
 # Build and cache files
-dist/
-build/
+#dist/
+#build/
 *.cache
 .parcel-cache
 
